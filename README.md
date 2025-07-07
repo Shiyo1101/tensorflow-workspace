@@ -38,6 +38,12 @@
   * **インストール**:
       * **Windows/Mac**: [Docker Desktop](https://www.docker.com/products/docker-desktop/)公式サイトからダウンロードし、インストールします。
       * **Linux (Ubuntu)**: Docker公式サイトの手順に従い、インストールします。
+  * **(Linux限定) 実行権限エラーへの対処**:
+    Linuxで`sudo`なしで`docker`コマンドを実行しようとすると、「permission denied」というエラーが発生することがあります。これは、現在のユーザーが`docker`グループに所属していないためです。以下のコマンドでユーザーを`docker`グループに追加してください。
+    ```bash
+    sudo usermod -aG docker $USER
+    ```
+    **【重要】** このコマンドの実行後、変更を反映させるために一度PCから**ログアウトして再度ログイン**するか、**PCを再起動**する必要があります。
   * **確認方法**: ターミナルで以下のコマンドを実行し、バージョン情報が表示されることを確認します。
     ```bash
     docker --version
@@ -109,5 +115,3 @@ INFO:tensorflow:  GPU 0: /physical_device:GPU:0
 ...
 INFO:tensorflow:TensorFlowの動作確認が完了しました。
 ```
-
-上記のようにGPUが利用可能である旨のメッセージが表示されれば、セットアップは成功です。開発を始めましょう！
