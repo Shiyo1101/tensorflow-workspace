@@ -1,6 +1,6 @@
 FROM tensorflow/tensorflow:2.17.0-gpu
 
-WORKDIR /workspace
+WORKDIR /tensorflow-workspace
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \

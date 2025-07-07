@@ -9,18 +9,20 @@
                 "ms-python.python",
                 "charliermarsh.ruff",
                 "ms-python.vscode-pylance",
-                "tamasfe.even-better-toml"
+                "tamasfe.even-better-toml",
+                "seatonjiang.gitmoji-vscode",
+                "mhutchie.git-graph"
             ]
         }
     },
     // コンテナのワークスペースを指定
-    "workspaceFolder": "/workspace",
+    "workspaceFolder": "/tensorflow-workspace",
     // Dockerコンテナ実行時の引数 (GPUを使用するために必要)
     "runArgs": [
         "--gpus",
         "all"
     ],
     "mounts": [
-        "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
+        "source=${localWorkspaceFolder},target=/tensorflow-workspace,type=bind,consistency=cached",
     ]
 }
