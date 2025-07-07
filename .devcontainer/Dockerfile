@@ -22,8 +22,5 @@ RUN /bin/python -m pip install --no-cache-dir \
     ruff \
     pydantic 
 
-# 環境変数の設定（CUDA関連）
-ENV LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/local/cuda-12.2/lib64
-
 # コンテナ起動時にシェルを開く設定
 CMD ["bash"]
