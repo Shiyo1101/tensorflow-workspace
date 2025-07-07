@@ -53,9 +53,26 @@
 
   * **説明**: 大学のネットワーク内からコンテナイメージのダウンロードなどを行う場合に必要です。
   * **設定方法**:
-      * **Linux (Ubuntu)**: `~/.docker/config.json`にプロキシ情報を記述します。
+      * **Linux (Ubuntu)**: 以下の手順でセットアップを行います
+        1. 現在設定されているプロキシ設定を確認します
+          ```bash
+          env | grep -i proxy
+          ```
+        2. 設定ファイルを開きます: `sudo nano ~/config.json`
+        3. 得られた情報をもとに、`~/.docker/config.json` に設定を記述します。
+          ```json
+          {
+            "proxies": {
+              "default": {
+                "httpProxy": "[HTTP_PROXY]",
+                "httpsserratProxy": "[HTTP_PROXY]",
+                "noProxy": "localhost,127.0.0.1,[DOMAIN]"
+              }
+            }
+          }
+          ```
+        4. ファイルを保存し、Dockerを再起動します: `sudo systemctl restart docker`
       * **Windows / Mac (Docker Desktop)**: Settings \> Resources \> PROXIES からGUIで設定します。
-      * (詳細な手順は省略。必要に応じて前の回答を参照してください。)
 
 #### 1.4. NVIDIA Container Toolkit (Linuxのみ)
 
