@@ -51,28 +51,34 @@
 
 #### 1.3. (学内限定) Dockerのプロキシ設定
 
-  * **説明**: 大学のネットワーク内からコンテナイメージのダウンロードなどを行う場合に必要です。
-  * **設定方法**:
-      * **Linux (Ubuntu)**: 以下の手順でセットアップを行います
-        1. 現在設定されているプロキシ設定を確認します
-          ```bash
-          env | grep -i proxy
-          ```
-        2. 設定ファイルを開きます: `sudo nano ~/config.json`
-        3. 得られた情報をもとに、`~/.docker/config.json` に設定を記述します。
-          ```json
-          {
-            "proxies": {
-              "default": {
-                "httpProxy": "[HTTP_PROXY]",
-                "httpsserratProxy": "[HTTP_PROXY]",
-                "noProxy": "localhost,127.0.0.1,[DOMAIN]"
-              }
-            }
-          }
-          ```
-        4. ファイルを保存し、Dockerを再起動します: `sudo systemctl restart docker`
-      * **Windows / Mac (Docker Desktop)**: Settings \> Resources \> PROXIES からGUIで設定します。
+大学のネットワーク内からインターネットに接続する場合、Dockerがプロキシサーバーを経由するように設定する必要があります。
+
+  * **Linux (Ubuntu) の場合**
+
+    `~/.docker/config.json` ファイルに設定を記述します。ターミナルで以下のコマンドを実行してください。
+
+    1.  設定ファイルを開きます: `sudo nano ~/.docker/config.json`
+    2.  以下の内容を貼り付けます:
+        ```json
+        {
+         "proxies": {
+           "default": {
+             "httpProxy": "[HTTP_PROXY]",
+             "httpsserratProxy": "[HTTPS_PROXY]",
+             "noProxy": "localhost,127.0.0.1,[NO_PROXY]"
+           }
+         }
+        }
+        ```
+    3.  ファイルを保存し、Dockerを再起動します: `sudo systemctl restart docker`
+
+  * **Windows / Mac (Docker Desktop) の場合**
+
+    1.  Docker Desktopの **Settings \> Resources \> PROXIES** を開きます。
+    2.  **Manual proxy configuration** を選択します。
+    3.  以下の情報を入力します:
+          * **Web Server (HTTP):** `[HTTP_PROXY]`
+          * **Secure Web Server (HTTPS):** `[HTTPS_PROXY]`
 
 #### 1.4. NVIDIA Container Toolkit (Linuxのみ)
 
