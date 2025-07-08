@@ -10,6 +10,9 @@ ignore = [
     "D1",    # undocumented
     "D203",  # one blank line before class
     "D213",  # multi-line summary second line
+    "D400",
+    "D415",
+    "EXE002",
     "TD001", # invalid todo tag
     "TD002", # missing todo author
     "TD003", # missing todo link
